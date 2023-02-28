@@ -78,10 +78,10 @@ app.delete("/delete_toy_data", async (req, res) => {
 
  // Update product- uses information from req.body to update the specific product
  app.put('/update_by_id', async (req, res) => {
-    let id = '63cd54377099d7e530cbb428';
+    let id = '63fd3aab97be4eaf38b8cfd7';
     // usually from the front end (req.body.theId) // req.body.params.id // req.query.fruitId
     // update data comes from req.body {name: "banana", readyToEat: false, color: green}
-    let myData = {name: "Trampoline"}
+    let myData = {price: 50}
     let response = await Toy.findByIdAndUpdate(id, myData, {new:true});
     console.log(response);
     res.send(response);
