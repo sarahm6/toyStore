@@ -10,6 +10,8 @@ body {
     background-color: #d0f4de;
 }
 
+
+
 .navbar {
     background-color: #d0f4de;
     padding-top: 25px;
@@ -20,6 +22,10 @@ body {
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 30px;
+}
+
+.product-img{
+    max-width: 250px;
 }
 
 .cart {

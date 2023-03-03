@@ -29,6 +29,7 @@ button.addEventListener("click", async () => {
         body: JSON.stringify(toy)
     }) 
     console.log(res)
+    window.location.reload();
 })
 
 

@@ -2,7 +2,7 @@ let editButton = document.getElementById("edit-item")
 console.log(editButton)
 
 
-button.addEventListener("click", async () => {
+editButton.addEventListener("click", async () => {
     // Step 1: Select all of the inputs 
     let name = document.getElementById("name").value
     let price = +document.getElementById("price").value
@@ -10,8 +10,6 @@ button.addEventListener("click", async () => {
     let image = document.getElementById("image").value
     let inventory = +document.getElementById("inventory").value
     // Step 2: Get the values out of the inputs
-    // let name = nameInput.value
-    // console.log(name);
     const toy = {
         name,
         price,

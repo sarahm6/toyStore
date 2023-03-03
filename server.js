@@ -68,8 +68,11 @@ app.get("/getspecifictoy/:product_id", async (req, res) => {
   })
 
 // Delete product- The product ID should be included in the URL as a query
-app.delete("/delete_toy_data", async (req, res) => {
-    let response = await Toy.deleteMany({name: ""});
+app.delete("/delete_toy_data/:idOfToy", async (req, res) => {
+    console.log("routehit")
+    let {idOfToy} = req.params
+    console.log(idOfToy)
+    let response = await Toy.findByIdAndDelete(idOfToy);
  
     console.log(response);
  
@@ -83,6 +86,25 @@ app.delete("/delete_toy_data", async (req, res) => {
     // update data comes from req.body {name: "banana", readyToEat: false, color: green}
     let myData = {price: 50}
     let response = await Toy.findByIdAndUpdate(id, myData, {new:true});
+    console.log(response);
+    res.send(response);
+})
+
+// Get single toy using id
+app.get('/get_single_toy_using_id/:idOfToy', async (req, res) => {
+    let id = req.params.idOfToy;
+
+    let response = await Toy.findById(id);
+    console.log(response);
+    res.send(response);
+})
+
+// Update a single toy
+app.put('/update_one_toy/:id', async (req, res) => {
+    let id = req.params.id;
+    let myData = req.body;
+
+    let response = await Toy.findByIdAndUpdate(id, myData);
     console.log(response);
     res.send(response);
 })
