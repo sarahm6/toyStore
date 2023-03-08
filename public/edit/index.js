@@ -18,8 +18,13 @@ editButton.addEventListener("click", async () => {
         inventory
     }
     console.log(toy)
+    window.location.href=`../single_toy/index.html/?id=${object._id}`
     // Step 3: Send values to the create route in server
-    let res = await fetch("http://localhost:5000/create_toy", {
+
+    let params = new URL(document.location).searchParams;
+    let id = params.get("id"); // is the string "Jonathan Smith".
+
+    let res = await fetch(`http://localhost:5000/update_one_toy/?id=${id}`, {
         method: "PUT", 
         headers: {
             "Content-Type": "application/json"
@@ -27,4 +32,5 @@ editButton.addEventListener("click", async () => {
         body: JSON.stringify(toy)
     }) 
     console.log(res)
+    window.location.reload();
 })

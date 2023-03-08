@@ -1,3 +1,25 @@
+h1 {
+    text-align: center;
+}
+
 .product-img{
-    max-width: 200px;
+    max-width: 400px;
+    max-height: 300px;
+}
+
+.single-toy {
+    text-align: center;
+    
+}
+
+.hide {
+    display: none;
+}
+
+.inventoryDiv {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
 }

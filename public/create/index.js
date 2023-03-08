@@ -19,7 +19,9 @@ button.addEventListener("click", async () => {
         image,
         inventory
     }
+
     console.log(toy)
+    window.location.href=`../index.html?id=${toy}`
     // Step 3: Send values to the create route in server
     let res = await fetch("http://localhost:5000/create_toy", {
         method: "POST", 

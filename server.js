@@ -81,7 +81,8 @@ app.delete("/delete_toy_data/:idOfToy", async (req, res) => {
 
  // Update product- uses information from req.body to update the specific product
  app.put('/update_by_id', async (req, res) => {
-    let id = '63fd3aab97be4eaf38b8cfd7';
+    let id = req.params.id;
+    console.log(id)
     // usually from the front end (req.body.theId) // req.body.params.id // req.query.fruitId
     // update data comes from req.body {name: "banana", readyToEat: false, color: green}
     let myData = {price: 50}
@@ -100,13 +101,47 @@ app.get('/get_single_toy_using_id/:idOfToy', async (req, res) => {
 })
 
 // Update a single toy
-app.put('/update_one_toy/:id', async (req, res) => {
-    let id = req.params.id;
+app.put('/update_one_toy/', async (req, res) => {
+    let id = req.query.id;
     let myData = req.body;
+    console.log(req.query)
+    console.log(myData)
+    console.log("standing art easel")
 
-    let response = await Toy.findByIdAndUpdate(id, myData);
-    console.log(response);
-    res.send(response);
+    try {
+        let response = await Toy.findByIdAndUpdate({_id: id}, myData)
+        console.log(response);
+        res.send(response);
+    } catch (error) {
+        console.log("error", error)
+    }
+
+    
+    
+})
+
+// Buy a single toy
+app.put('/buy_one_toy/', async (req, res) => {
+    let id = req.query.id;
+
+    try {
+        const toy = await Toy.findById(id);
+        // console.info("dsakmljfnsdkjfnjeskdnlsejdfknsjklhkjerf", toy)
+        // if (toy.inventory > 0) {
+            const newQuantity = {
+                inventory: toy.inventory == 0 ? toy.inventory : toy.inventory-1
+            }
+            const response = await Toy.findByIdAndUpdate({_id: id}, newQuantity);
+            // console.log(toy);
+            res.send(response);
+        // } else {
+        //     res.send(toy);
+        // }
+        
+    } catch (error) {
+        console.log("error", error)
+    }
+    
 })
 
 
