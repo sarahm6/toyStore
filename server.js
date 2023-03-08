@@ -50,23 +50,6 @@ app.post('/create_toy', async (req, res) =>{
 
 })
 
-// Get products- responds with all products in your collection
-app.get('/get_toy_data', async (req, res) => {
-    // get data from database
-    let response = await Toy.find({});
-    console.log(response);
-    // send it back to front end
-    res.json(response)
-
-})
-
-// Get a specific product- responds with one specific product from your collection
-app.get("/getspecifictoy/:product_id", async (req, res) => {
-    console.log("get specific toy route");
-
-    res.json(response);
-  })
-
 // Delete product- The product ID should be included in the URL as a query
 app.delete("/delete_toy_data/:idOfToy", async (req, res) => {
     console.log("routehit")
@@ -131,7 +114,8 @@ app.put('/buy_one_toy/', async (req, res) => {
             const newQuantity = {
                 inventory: toy.inventory == 0 ? toy.inventory : toy.inventory-1
             }
-            const response = await Toy.findByIdAndUpdate({_id: id}, newQuantity);
+            const response = await Toy.findByIdAndUpdate({_id: id}, newQuantity, {new: true});
+            
             // console.log(toy);
             res.send(response);
         // } else {
@@ -144,6 +128,22 @@ app.put('/buy_one_toy/', async (req, res) => {
     
 })
 
+// // Get products- responds with all products in your collection
+// app.get('/get_toy_data', async (req, res) => {
+//     // get data from database
+//     let response = await Toy.find({});
+//     console.log(response);
+//     // send it back to front end
+//     res.json(response)
+
+// })
+
+// // Get a specific product- responds with one specific product from your collection
+// app.get("/getspecifictoy/:product_id", async (req, res) => {
+//     console.log("get specific toy route");
+
+//     res.json(response);
+//   })
 
 app.listen(5000, () => {
     console.log(`Server is listening on 5000`)
