@@ -19,6 +19,7 @@ app.use(cors())
 console.log(process.env.MONGOUSERNAME)
 const connectionString = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@mongosetupcluster.uxrtp52.mongodb.net/Mod2Project?retryWrites=true&w=majority`
 
+
 mongoose.set('strictQuery', false);
 // connect to our MongoDB database (our Models specify which collections)
 mongoose.connect(connectionString, {
@@ -128,15 +129,15 @@ app.put('/buy_one_toy/', async (req, res) => {
     
 })
 
-// // Get products- responds with all products in your collection
-// app.get('/get_toy_data', async (req, res) => {
-//     // get data from database
-//     let response = await Toy.find({});
-//     console.log(response);
-//     // send it back to front end
-//     res.json(response)
+// Get products- responds with all products in your collection
+app.get('/get_toy_data', async (req, res) => {
+    // get data from database
+    let response = await Toy.find({});
+    console.log(response);
+    // send it back to front end
+    res.json(response)
 
-// })
+})
 
 // // Get a specific product- responds with one specific product from your collection
 // app.get("/getspecifictoy/:product_id", async (req, res) => {

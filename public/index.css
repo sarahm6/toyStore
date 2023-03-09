@@ -108,11 +108,13 @@ body {
 
 nav {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     left:50px;
     top: 125px;
-    position: relative;
     font-size: 20px;
+    position: relative;
+    align-items: center;
+    gap: 20px;
 }
 
 /* // Search bar */
